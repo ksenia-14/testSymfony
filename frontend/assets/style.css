@@ -1,0 +1,531 @@
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  font-family: "Helvetica", Arial, sans-serif;
+  font-size: 18px;
+  display: grid;
+  grid-template-rows: max-content 1fr max-content;
+  min-height: 100vh;
+}
+body ::-webkit-calendar-picker-indicator {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 24 24"><path fill="rgb(10, 137, 175)" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>');
+}
+
+header {
+  background-color: #4ac6eb;
+  color: white;
+}
+header a {
+  color: white;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+input:where(:not([type=radio])),
+textarea {
+  border-color: rgba(74, 198, 235, 0.6392156863);
+  border-width: 3px;
+  border-radius: 20px;
+  border-style: solid;
+  color: rgb(10, 137, 175);
+  padding: 18px;
+  font-size: 18px;
+}
+input:where(:not([type=radio])):focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 10px #4ac6eb;
+}
+input:where(:not([type=radio]))::placeholder,
+textarea::placeholder {
+  color: rgba(74, 198, 235, 0.6392156863);
+}
+
+textarea {
+  resize: none;
+}
+
+::-webkit-scrollbar {
+  width: 15px;
+  height: 15px;
+}
+
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment {
+  height: 10px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-track-piece {
+  background-color: white;
+  -webkit-border-radius: 16px;
+}
+
+::-webkit-scrollbar-thumb:vertical,
+::-webkit-scrollbar-thumb:horizontal {
+  height: 10px;
+  background-color: rgba(74, 198, 235, 0.173);
+  border: 2px solid rgba(74, 198, 235, 0.6392156863);
+  -webkit-border-radius: 16px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+select {
+  color: rgb(10, 137, 175);
+  font-size: 18px;
+}
+
+select:focus {
+  outline: none;
+}
+
+footer {
+  background-color: #4ac6eb;
+  color: white;
+  text-align: right;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.header-menu {
+  display: grid;
+  grid-template-columns: 1fr repeat(4, 1fr) min-content min-content min-content;
+  gap: 5px;
+  align-items: center;
+  top: 0%;
+  font-weight: bold;
+  min-height: 80px;
+  text-align: center;
+}
+.header-menu button {
+  background-color: white;
+  border: 3px solid;
+  border-color: white;
+  border-radius: 15px;
+  padding: 14px;
+  margin: 10px;
+  color: rgb(10, 137, 175);
+  font-weight: bold;
+}
+.header-menu button:active {
+  background-color: rgb(0, 103, 159);
+  border-color: white;
+  color: white;
+}
+.header-menu .title-main-page {
+  font-size: 34px;
+  margin-left: 40px;
+  margin-right: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+}
+.header-menu .title-main-page svg {
+  fill: white;
+  height: 34px;
+  margin-right: 10px;
+}
+.header-menu .btn-exit {
+  background-color: rgb(0, 182, 227);
+  color: white;
+  padding: 16px;
+  margin-right: 40px;
+  margin-left: 40px;
+}
+
+.main-page {
+  color: rgb(10, 137, 175);
+  padding: 30px;
+}
+.main-page h2 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.doc-menu {
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  grid-template-rows: repeat(2, max-content);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.doc-menu button {
+  background-color: #4ac6eb;
+  color: white;
+  padding: 20px;
+  border-radius: 20px;
+  border: 3px solid #4ac6eb;
+  width: max-content;
+}
+.doc-menu button:active {
+  background-color: rgb(0, 103, 159);
+  border-color: rgb(0, 103, 159);
+}
+.doc-menu .block-find {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  display: grid;
+  grid-template-columns: max-content max-content;
+  gap: 10px;
+}
+.doc-menu .btn-new-doc {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  align-self: self-end;
+}
+.doc-menu .filter-menu {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+.doc-menu .filter-menu .header-filters {
+  display: block;
+  margin: 9px 0px 9px 0px;
+  font-weight: bolder;
+}
+.doc-menu .filter-menu .filter-items {
+  display: grid;
+  grid-template-columns: repeat(5, max-content);
+  gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.doc-menu .filter-menu .filter-items .filter-states {
+  position: relative;
+  float: left;
+  min-width: max-content;
+}
+.doc-menu .filter-menu .filter-items .filter-states:after {
+  content: "<>";
+  color: rgb(0, 103, 159);
+  transform: rotate(90deg);
+  right: 11px;
+  /*Adjust for position however you want*/
+  top: 20px;
+  padding: 0 0 2px;
+  border-bottom: 1px solid rgba(74, 198, 235, 0.6392156863);
+  /*left line */
+  position: absolute;
+  pointer-events: none;
+}
+.doc-menu .filter-menu .filter-items .filter-states select {
+  appearance: none;
+  display: block;
+  padding: 18px;
+  padding-right: 39px;
+  background-color: white;
+  border: 3px solid rgba(74, 198, 235, 0.6392156863);
+  border-radius: 20px;
+  width: 100%;
+}
+
+.doc-table {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.doc-header {
+  display: grid;
+  grid-template-columns: max-content 1fr 1fr 0.6fr 0.7fr 1.3fr;
+  align-items: center;
+}
+.doc-header div {
+  background-color: rgba(74, 198, 235, 0.173);
+  height: 40px;
+  padding: 20px;
+  text-align: center;
+  display: grid;
+}
+.doc-header div span {
+  justify-self: center;
+  align-self: center;
+}
+
+.doc-element {
+  display: grid;
+  grid-template-columns: max-content 1fr 1fr 0.6fr 0.7fr 1.3fr;
+  align-items: center;
+  justify-content: center;
+  align-items: stretch;
+  border-left: 3px solid rgba(74, 198, 235, 0.173);
+}
+.doc-element .center {
+  text-align: center;
+}
+.doc-element div {
+  border: 0px solid rgba(74, 198, 235, 0.173);
+  border-right-width: 3px;
+  border-bottom-width: 3px;
+  border-bottom: 3px solid rgba(74, 198, 235, 0.173);
+  border-right: 3px solid rgba(74, 198, 235, 0.173);
+  height: 20px;
+  padding: 10px;
+  display: grid;
+}
+.doc-element div span {
+  align-self: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.radio-doc {
+  width: 22px;
+  height: 22px;
+}
+.radio-doc input:where([type=radio]) {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  margin: calc(0.75em - 11px) 0.25rem 0 0;
+  vertical-align: top;
+  border-radius: 4px;
+  border-radius: 50%;
+  background-color: rgba(74, 198, 235, 0.173);
+}
+.radio-doc input[type=radio]:checked {
+  border: 7px solid rgb(10, 137, 175);
+  background: white;
+  transition: all 200ms ease-in-out;
+}
+
+.doc-actions {
+  display: grid;
+  grid-template-columns: repeat(4, max-content);
+  gap: 20px;
+}
+.doc-actions button {
+  background-color: #4ac6eb;
+  color: white;
+  padding: 20px;
+  border-radius: 20px;
+  border: 3px solid #4ac6eb;
+  width: max-content;
+  width: 250px;
+}
+.doc-actions button:active {
+  background-color: rgb(0, 103, 159);
+  border-color: rgb(0, 103, 159);
+}
+
+.popup-div {
+  display: none;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+}
+
+.popup-fade {
+  position: fixed;
+  background: rgba(0, 92, 141, 0.257);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.popup-window {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  height: min-content;
+  padding: 50px;
+  background: #FFF;
+  border: 8px solid white;
+  box-shadow: 0 0 30px rgb(10, 137, 175);
+}
+.popup-window h2 {
+  margin: 0px 0 35px 0;
+}
+.popup-window div,
+.popup-window form {
+  display: grid;
+}
+.popup-window label {
+  font-weight: bold;
+}
+.popup-window input,
+.popup-window textarea {
+  margin: 8px 0 15px 0;
+}
+.popup-window textarea {
+  height: 70px;
+}
+
+.reg-div {
+  display: none;
+  border-radius: 40px;
+  top: 15%;
+  width: 500px;
+  left: calc((100vw - 620px) / 2);
+}
+.reg-div .btn-submit {
+  margin-top: 30px;
+  min-width: max-content;
+  width: 50%;
+}
+
+.login-div {
+  display: none;
+  border-radius: 40px;
+  top: 15%;
+  width: 500px;
+  left: calc((100vw - 620px) / 2);
+}
+.login-div .btn-submit {
+  margin-top: 30px;
+  min-width: max-content;
+  width: 50%;
+}
+
+.new-doc {
+  display: none;
+  border-radius: 40px;
+  top: 5%;
+  width: 600px;
+  left: calc((100vw - 690px) / 2);
+}
+.new-doc .btn-submit {
+  margin-top: 35px;
+  width: 100%;
+  padding: 25px;
+}
+.new-doc .doc-states {
+  position: relative;
+  float: left;
+  min-width: max-content;
+  margin: 8px 0px;
+}
+.new-doc .doc-states:after {
+  content: "<>";
+  color: rgb(0, 103, 159);
+  transform: rotate(90deg);
+  right: 11px;
+  /*Adjust for position however you want*/
+  top: 20px;
+  padding: 0 0 2px;
+  border-bottom: 1px solid rgba(74, 198, 235, 0.6392156863);
+  /*left line */
+  position: absolute;
+  pointer-events: none;
+}
+.new-doc .doc-states select {
+  appearance: none;
+  display: block;
+  padding: 18px;
+  padding-right: 39px;
+  background-color: white;
+  border: 3px solid rgba(74, 198, 235, 0.6392156863);
+  border-radius: 20px;
+  width: 100%;
+}
+.new-doc .doc-states select {
+  margin-bottom: 8px;
+  padding: 20px;
+}
+.new-doc .columns {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  align-items: center;
+}
+
+.input-file {
+  width: max-content;
+  margin-top: 5px;
+  /* Focus */
+  /* Hover/active */
+}
+.input-file .input-file-btn {
+  cursor: pointer;
+  display: inline-block;
+  color: rgb(10, 137, 175);
+  text-align: center;
+  background-color: white;
+  padding: 20px;
+  border: 3px solid rgb(10, 137, 175);
+  border-radius: 10px;
+  margin-top: 5px;
+  transition: background-color 0.2s;
+  width: 240px;
+}
+.input-file input[type=file] {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  display: block;
+  width: 0;
+  height: 0;
+}
+.input-file input[type=file]:focus + .input-file-btn {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+.input-file:hover .input-file-btn {
+  background-color: rgba(74, 198, 235, 0.173);
+}
+.input-file:active .input-file-btn {
+  background-color: rgb(0, 103, 159);
+  border-color: rgb(0, 103, 159);
+  color: white;
+}
+
+.btn-close {
+  background-color: white;
+  border: none;
+  width: 20px;
+  height: 20px;
+  justify-self: end;
+}
+
+.btn-submit {
+  background-color: #4ac6eb;
+  color: white;
+  padding: 20px;
+  border-radius: 20px;
+  border: 3px solid #4ac6eb;
+  width: max-content;
+  margin: 10px 0 0px 0;
+  padding: 22px;
+  border-radius: 20px;
+  border: none;
+  min-width: 250px;
+}
+.btn-submit:active {
+  background-color: rgb(0, 103, 159);
+  border-color: rgb(0, 103, 159);
+}
+
+.icon-close {
+  cursor: pointer;
+  fill: rgb(10, 137, 175);
+  height: 20px;
+  width: 20px;
+}
+
+.hidden {
+  display: none;
+}

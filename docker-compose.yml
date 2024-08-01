@@ -1,0 +1,42 @@
+version: '3.7'
+services:
+  postgres:
+    image: postgres:${POSTGRES_VERSION:-13}-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: it2go
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - ./backend/var/db-data:/var/lib/postgresql/data:rw
+  php-fpm:
+    build: ./docker/php-fpm-dev
+    volumes:
+    - ./backend/:/app
+    environment:
+      PHP_IDE_CONFIG: "serverName=Docker"
+  php-cli:
+    build: ./docker/php-cli-dev
+    volumes:
+      - ./backend/:/app
+  nginx:
+    image: nginx:alpine
+    ports:
+    - "80:80"
+    volumes:
+    - ./backend/:/app
+    - ./backend/var/log/nginx:/var/log/nginx
+    - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - php-fpm
+    working_dir: /app
+  vue:
+    build:
+      context: docker/vue
+    container_name: vuejs_test
+    volumes:
+      - "./frontend/:/var/www/html"
+    ports:
+      - "8000:8000"

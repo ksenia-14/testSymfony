@@ -1,0 +1,52 @@
+@mixin custom-list {
+    position: relative;
+    float: left;
+    min-width: max-content;
+
+    &:after {
+        content: '<>';
+        color: $very-dark-blue;
+        transform: rotate(90deg);
+        right: 11px;
+        /*Adjust for position however you want*/
+
+        top: 20px;
+        padding: 0 0 2px;
+        border-bottom: 1px solid $light-blue;
+        /*left line */
+
+        position: absolute;
+        pointer-events: none;
+    }
+
+    select {
+        appearance: none;
+        display: block;
+        padding: 18px;
+        padding-right: 39px;
+        background-color: white;
+        border: 3px solid $light-blue;
+        border-radius: 20px;
+        width: 100%;
+    }
+}
+
+@mixin blue-button {
+    background-color: $main-blue;
+    color: white;
+    padding: 20px;
+    border-radius: 20px;
+    border: 3px solid $main-blue;
+    width: max-content;
+
+    &:active {
+        background-color: $very-dark-blue;
+        border-color: $very-dark-blue;
+    }
+}
+
+@mixin doc-grid() {
+    display: grid;
+    grid-template-columns: max-content 1fr 1fr 0.6fr 0.7fr 1.3fr;
+    align-items: center;
+  }
