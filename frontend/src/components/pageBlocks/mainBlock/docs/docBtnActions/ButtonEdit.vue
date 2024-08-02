@@ -3,6 +3,7 @@ import PopupBlock from '@/components/popup/PopupBlock.vue';
 import { ref } from 'vue';
 
 const props = defineProps(['idSelect'])
+const emit = defineEmits(['updateTable'])
 
 const isPopupDocOpen = ref(false)
 
@@ -17,6 +18,7 @@ function btnClick() {
   <button id="btn-edit" @click="btnClick">Редактировать</button>
 
   <Teleport to="body">
-    <PopupBlock type-popup="doc-edit" :id-select="props.idSelect" v-if="isPopupDocOpen" @closePopup="isPopupDocOpen = false" />
+    <PopupBlock type-popup="doc-edit" :id-select="props.idSelect" v-if="isPopupDocOpen" 
+      @closePopup="isPopupDocOpen = false" @updateTable="$emit('updateTable')" />
   </Teleport>
 </template>

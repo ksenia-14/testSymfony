@@ -18,6 +18,15 @@ function getDocuments() {
     .then(data => documents.value = data)
 }
 
+function formatDate(str_date) {
+    if (str_date === '') return '';
+
+    let day = str_date.substr(8, 2);
+    let month = str_date.substr(5, 2);
+    let year = str_date.substr(0, 4);
+    return  day + '.' + month + '.' + year;
+}
+
 watch(
   () => prop.documents,
   () => {
@@ -46,7 +55,7 @@ onMounted(() => {
     </div>
 
     <DocItem v-if="documents" v-for="doc in documents" :id="doc.id" :name="doc.name" :author="doc.author"
-      :date="doc.date" :state="doc.state" :description="doc.text" :needResetRadio="needResetRadio" 
+      :date="formatDate(doc.date)" :state="doc.state" :description="doc.text" :needResetRadio="needResetRadio" 
       @idSelect="$emit('idSelect', $event)" @radioIsReseted="needResetRadio = false" />
 
   </div>

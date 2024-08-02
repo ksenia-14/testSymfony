@@ -1,7 +1,9 @@
 <script setup>
 import PopupBlock from '@/components/popup/PopupBlock.vue';
 
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
+
+const emit = defineEmits(['updateTable'])
 
 const isPopupDocOpen = ref(false)
 </script>
@@ -11,7 +13,8 @@ const isPopupDocOpen = ref(false)
     Создать новый документ
   </button>
   <Teleport to="body">
-    <PopupBlock type-popup="doc-new" v-if="isPopupDocOpen" @closePopup="isPopupDocOpen = false" />
+    <PopupBlock type-popup="doc-new" v-if="isPopupDocOpen" @closePopup="isPopupDocOpen = false"
+      @updateTable="$emit('updateTable')" />
   </Teleport>
 </template>
 

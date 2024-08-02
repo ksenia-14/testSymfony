@@ -2,7 +2,7 @@
 import { useStore } from 'vuex';
 const store = useStore();
 
-const emit = defineEmits(['deleteDoc'])
+const emit = defineEmits(['deleteDoc', 'updateTable'])
 const props = defineProps(['idSelect'])
 const apiDelete = store.getters['api/apiDocDelete']
 
@@ -21,7 +21,8 @@ function deleteDoc() {
 function finalDelete(data) {
   if(data.success) {
     emit('deleteDoc', props.idSelect)
-    location.reload()
+    emit('updateTable')
+    // location.reload()
   } else {
     console.log(data.message)
   }

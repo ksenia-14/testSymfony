@@ -28,12 +28,12 @@ class AuthController extends AbstractController
 
         $user = $this->userRepository->getUserByLogin($params->login);
         if ($user && $user->getPassword() === $params->password) {
-            $data = $serializer->serialize(["success"=> true, 'token' => "some_token"], JsonEncoder::FORMAT);
+            $response = $this->json(["success"=> true, 'token' => "some_token"]);
         } else {
-            $data = $serializer->serialize(['success' => false, "message" => "some error text"], JsonEncoder::FORMAT);
+            $response = $this->json(['success' => false, "message" => "Неверный логин или пароль"]);
         }
 
-        return new JsonResponse($data, Response::HTTP_OK, [], true);
+        return $response;
     }
 
     #[Route('/api/register/', methods: ['POST'])]
@@ -41,14 +41,34 @@ class AuthController extends AbstractController
     {
         $params = json_decode($request->getContent());
 
-        $user = new User();
-        $user->setLogin($params->login);
-        $user->setPassword($params->password);
+        if ($this->isCorrectEmail($params->login) || $this->isCorrectPhoneNumber($params->login)) {
+            $user = new User();
+            $user->setLogin($params->login);
+            $user->setPassword($params->password);
+    
+            $this->userRepository->addNewUser($user);
+    
+            $response = $this->json(["success"=> true, 'token' => "some_token"]);
+        } else{
+            $response = $this->json(["success" => false, "message" => "Логин должен быть почтовым адресом или номером телефона"]);
+        }
 
-        $this->userRepository->addNewUser($user);
-
-        $data = $serializer->serialize(["success"=> true, 'token' => "some_token"], JsonEncoder::FORMAT);
-        return new JsonResponse($data, Response::HTTP_OK, [], true);
+        return $response;
     }
 
+    private function isCorrectEmail($email) {
+        $pattern = "#^[A-Za-z0-9.-_]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$#";
+        return preg_match($pattern, $email) == true;
+    }
+    
+    private function isCorrectPhoneNumber($phone_number) {
+        $pattern = "#^[+]?[0-9 -]{10,}$#";
+        if (preg_match($pattern, $phone_number)) {
+            $phone_number = preg_replace("#[^0-9]#", '', $phone_number);
+            if (strlen($phone_number) >= 10) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

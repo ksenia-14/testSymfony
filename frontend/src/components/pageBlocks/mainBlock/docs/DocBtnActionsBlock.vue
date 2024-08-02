@@ -4,15 +4,15 @@ import ButtonDownload from '@/components/pageBlocks/mainBlock/docs/docBtnActions
 import ButtonEdit from '@/components/pageBlocks/mainBlock/docs/docBtnActions/ButtonEdit.vue';
 import ButtonSend from '@/components/pageBlocks/mainBlock/docs/docBtnActions/ButtonSend.vue';
 
-const emit = defineEmits(['deleteDoc'])
+const emit = defineEmits(['deleteDoc', 'updateTable'])
 const props = defineProps(['idSelect'])
 </script>
 
 <template>
   <div class="doc-actions">
-    <ButtonSend :id-select="idSelect" />
-    <ButtonEdit :id-select="idSelect" />
-    <ButtonDelete :id-select="idSelect" @deleteDoc="$emit('deleteDoc', $event)" />
+    <ButtonSend :id-select="idSelect" @updateTable="$emit('updateTable')" />
+    <ButtonEdit :id-select="idSelect" @updateTable="$emit('updateTable')" />
+    <ButtonDelete :id-select="idSelect" @updateTable="$emit('updateTable')" @deleteDoc="$emit('deleteDoc', $event)" />
     <ButtonDownload :id-select="idSelect" />
   </div>
 </template>

@@ -6,7 +6,7 @@ import { onMounted, ref } from 'vue';
 const state = ref('new')
 const prop = defineProps(['typePopupDoc', 'idDoc'])
 
-const emit = defineEmits(['closePopup'])
+const emit = defineEmits(['closePopup', 'updateTable'])
 
 const store = useStore();
 
@@ -41,7 +41,8 @@ function finalSaveDoc(data) {
   docSaveError.value = ''
   if (data.success) {
     emit('closePopup')
-    location.reload()
+    emit('updateTable')
+    // location.reload()
   } else {
     docSaveError.value = data.message
   }
@@ -57,9 +58,9 @@ async function getDocument() {
     
     docObject.value.name = documentFromServer.name
     docObject.value.author = documentFromServer.author
-    docObject.value.date = convertDateToInputFormat(documentFromServer.date)
+    docObject.value.date = documentFromServer.date
     docObject.value.state = documentFromServer.state
-    docObject.value.description = documentFromServer.text
+    docObject.value.text = documentFromServer.text
     console.log(docObject.value)
   }
 }
@@ -123,7 +124,7 @@ onMounted(() => {
 
     <div>
       <label>Описание</label>
-      <textarea id="doc-description" v-model="docObject.description"></textarea>
+      <textarea id="doc-description" v-model="docObject.text"></textarea>
     </div>
 
     <label class="input-file">

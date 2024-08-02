@@ -3,7 +3,7 @@ import PopupFade from "@/components/popup/popupFade/PopupFade.vue";
 import PopupDoc from "@/components/popup/popupVariants/PopupDoc.vue";
 import PopupAuth from "./popupVariants/PopupAuth.vue";
 
-const emit = defineEmits(['closePopup'])
+const emit = defineEmits(['closePopup', 'updateTable'])
 const props = defineProps(['typePopup', 'error', 'idSelect'])
 
 </script>
@@ -14,9 +14,11 @@ const props = defineProps(['typePopup', 'error', 'idSelect'])
   <PopupAuth v-if="typePopup === 'login' || typePopup === 'reg'" :type-popup="typePopup"
     @closePopup="$emit('closePopup')" />
 
-  <PopupDoc v-if="typePopup === 'doc-new'" type-popup-doc="new" :doc-error="error" @closePopup="$emit('closePopup')" />
+  <PopupDoc v-if="typePopup === 'doc-new'" type-popup-doc="new" :doc-error="error" @closePopup="$emit('closePopup')" 
+    @updateTable="$emit('updateTable')" />
 
-  <PopupDoc v-if="typePopup === 'doc-edit'" type-popup-doc="edit" :id-doc="props.idSelect" @closePopup="$emit('closePopup')" />
+  <PopupDoc v-if="typePopup === 'doc-edit'" type-popup-doc="edit" :id-doc="props.idSelect" @closePopup="$emit('closePopup')"
+    @updateTable="$emit('updateTable')" />
 </template>
 
 <style lang="scss" scope>

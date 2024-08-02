@@ -3,14 +3,14 @@ import FindBlock from '@/components/pageBlocks/mainBlock/findAndNew/findBlocks/F
 import FilterBlock from '@/components/pageBlocks/mainBlock/findAndNew/findBlocks/FilterBlock.vue'
 import ButtonNewDoc from '@/components/pageBlocks/mainBlock/findAndNew/buttonNewDoc/ButtonNewDoc.vue'
 
-const emit = defineEmits(['updateListDocs'])
+const emit = defineEmits(['updateListDocs', 'updateTable'])
 </script>
 
 <template>
   <div id="doc-menu" class="doc-menu">
     <FindBlock @updateListDocs="$emit('updateListDocs', $event)" />
     <FilterBlock @updateListDocs="$emit('updateListDocs', $event)" />
-    <ButtonNewDoc />
+    <ButtonNewDoc @updateTable="$emit('updateTable')" />
   </div>
 </template>
 
