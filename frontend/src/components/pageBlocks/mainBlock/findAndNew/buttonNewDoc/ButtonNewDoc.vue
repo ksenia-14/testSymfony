@@ -19,6 +19,8 @@ const isPopupDocOpen = ref(false)
 </template>
 
 <style lang="scss" scope>
+@import "@/assets/style/main.scss";
+
 .btn-new-doc {
   grid-column-start: 2;
   grid-column-end: 3;

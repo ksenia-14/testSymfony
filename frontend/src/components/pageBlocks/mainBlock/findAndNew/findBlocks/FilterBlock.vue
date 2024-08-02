@@ -91,5 +91,24 @@ async function filterDocs() {
       @include custom-list();
     }
   }
+
+  @media (max-width: $width-media-1) {
+    .filter-items {
+      grid-template-columns: repeat(4, max-content);
+    }
+
+    button {
+      grid-row-start: 3;
+      grid-row-end: 4;
+      align-self: self-end;
+      margin-left: 0;
+    }
+  }
+
+  @media (max-width: $width-media-2) {
+    .filter-items {
+      grid-template-columns: repeat(3, max-content);
+    }
+  }
 }
 </style>

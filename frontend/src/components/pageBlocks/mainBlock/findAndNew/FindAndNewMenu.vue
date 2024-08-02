@@ -28,4 +28,10 @@ const emit = defineEmits(['updateListDocs', 'updateTable'])
     @include blue-button();
   }
 }
+
+@media (max-width: $width-media-1) {
+  .doc-menu {
+    grid-template-rows: repeat(3, max-content);
+  }
+}
 </style>
