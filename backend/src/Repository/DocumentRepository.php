@@ -76,6 +76,11 @@ class DocumentRepository extends ServiceEntityRepository
         $this->getEntityManager()->flush();
     }
 
+    public function updateDocument(): void
+    {
+        $this->getEntityManager()->flush();
+    }
+
     public function deleteDocumentById($id): void
     {
         $this->getEntityManager()->remove($this->getDocumentById($id));

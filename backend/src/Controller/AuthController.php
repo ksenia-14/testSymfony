@@ -22,7 +22,7 @@ class AuthController extends AbstractController
     }
 
     #[Route('/api/auth/', methods: ['POST'])]
-    public function authentification(Request $request, SerializerInterface $serializer): JsonResponse
+    public function authentification(Request $request): JsonResponse
     {
         $params = json_decode($request->getContent());
 
@@ -37,7 +37,7 @@ class AuthController extends AbstractController
     }
 
     #[Route('/api/register/', methods: ['POST'])]
-    public function registration(Request $request, SerializerInterface $serializer): JsonResponse
+    public function registration(Request $request): JsonResponse
     {
         $params = json_decode($request->getContent());
 

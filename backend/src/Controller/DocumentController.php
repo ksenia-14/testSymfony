@@ -85,13 +85,13 @@ class DocumentController extends AbstractController
         $document->setState($params->state);
         $document->setText($params->text);
 
-        $this->documentRepository->saveDocument($document);
+        $this->documentRepository->updateDocument();
 
         return $this->json(['success' => "ok"]);
     }
 
     #[Route('/api/document/{id}/', methods: ['DELETE'])]
-    public function deleteDocumentById(Request $request, SerializerInterface $serializer, $id): JsonResponse
+    public function deleteDocumentById(Request $request, $id): JsonResponse
     {
         $this->documentRepository->deleteDocumentById($id);
         return $this->json(['success' => "ok"]);
